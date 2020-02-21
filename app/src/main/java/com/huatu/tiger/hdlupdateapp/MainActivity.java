@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         startService(new Intent(this, TcpServerService.class));
+       if(!RootUtils.checkRoot())
+           RootUtils.grantRoot(this);
         checkPermission();
     }
 

@@ -216,7 +216,7 @@ public class TcpServerService extends Service implements TcpServerListener {
             protected void completed(BaseDownloadTask baseDownloadTask) {
                 server.sendMsg("download completed" + baseDownloadTask.getTargetFilePath(), xTcpClient);
                 if(baseDownloadTask.getUrl().endsWith("apk")){
-                    installApk(baseDownloadTask.getTargetFilePath());
+                    RootUtils.installPkg(baseDownloadTask.getTargetFilePath());
                 }
             }
 
