@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 //                Toast.makeText(getApplicationContext(), "服务端开启", Toast.LENGTH_LONG).show();
                     finish();
                 }
-            }, 2000);
+            }, 1000);
 
         }
     }

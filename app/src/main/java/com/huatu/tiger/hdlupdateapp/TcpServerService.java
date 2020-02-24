@@ -175,6 +175,8 @@ public class TcpServerService extends Service implements TcpServerListener {
             String path = Environment.getExternalStorageDirectory().getPath() + "/config.txt";
             String configMsg = readTextFile(path);
             server.sendMsg(configMsg, tcpClient);
+        } else if (receiveMsg.equalsIgnoreCase("restart")){
+            RootUtils.reboot();
         }
     }
 
@@ -205,6 +207,7 @@ public class TcpServerService extends Service implements TcpServerListener {
             @Override
             protected void pending(BaseDownloadTask baseDownloadTask, int i, int i1) {
                 server.sendMsg("download start:", xTcpClient);
+                InstallUninstallBroadcastReceiver.setIOInfo(server, xTcpClient, baseDownloadTask.getTargetFilePath());
             }
 
             @Override

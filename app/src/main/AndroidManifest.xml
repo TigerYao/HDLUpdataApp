@@ -5,11 +5,12 @@
     <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" />
     <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.DELETE_PACKAGES" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -46,6 +47,31 @@
                 android:resource="@xml/filepaths"
                 />
         </provider>
+
+        　　 <!--
+            订阅（Xml形式订阅接收者）
+            订阅接收者：专门去接收Android系统发出的（安装/替换/卸载）广播
+            应用：和package 有关，所以需要PACKAGE_XXX
+         -->
+        <receiver android:name=".InstallUninstallBroadcastReceiver">
+
+            <intent-filter>
+
+                <!-- 应用安装了 -->
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+
+                <!-- 应用卸载了 -->
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <!-- 应用被覆盖了 -->
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+
+                <!-- 系统就是这样发送的，所以必须这样订阅 -->
+                <data android:scheme="package" />
+
+            </intent-filter>
+
+        </receiver>
     </application>
 
 </manifest>

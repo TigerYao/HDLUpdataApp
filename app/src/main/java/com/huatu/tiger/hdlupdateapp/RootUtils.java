@@ -95,5 +95,13 @@ public class RootUtils {
     public static boolean grantRoot(Context context) {
         return runRootCmd("chmod 777 " + context.getPackageCodePath());
     }
+
+    public static void reboot(){
+        try {
+            Runtime.getRuntime().exec("su -c reboot");
+        }catch (Throwable t){
+            t.printStackTrace();
+        }
+    }
 }
 
