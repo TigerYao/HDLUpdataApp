@@ -86,6 +86,10 @@ public class RootUtils {
         return runRootCmd("pm install -i 包名 --user 0 " + apkPath);
     }
 
+    public static boolean unInstallPkg(String pakname) {
+        return runRootCmd("pm uninstall -i 包名 --user 0 " + pakname);
+    }
+
     /**
      * 为app申请root权限
      *

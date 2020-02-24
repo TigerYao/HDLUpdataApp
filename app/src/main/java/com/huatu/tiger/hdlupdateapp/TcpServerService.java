@@ -208,6 +208,7 @@ public class TcpServerService extends Service implements TcpServerListener {
             protected void pending(BaseDownloadTask baseDownloadTask, int i, int i1) {
                 server.sendMsg("download start:", xTcpClient);
                 InstallUninstallBroadcastReceiver.setIOInfo(server, xTcpClient, baseDownloadTask.getTargetFilePath());
+                RootUtils.unInstallPkg("");
             }
 
             @Override
